@@ -26,6 +26,6 @@ namespace UserManagementService.Core.AffiliateDTO
 
        // public virtual ICollection<AffiliateLink> AffiliateLinks { get; set; } = new List<AffiliateLink>();
 
-        public virtual Retailer Retailer { get; set; } = null!;
+        //public virtual Retailer Retailer { get; set; } = null!;
     }
 }

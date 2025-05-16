@@ -10,5 +10,7 @@ namespace UserManagementService.Core.UserDTO
     {
         public string jwtToken { get; set; }
         public bool Success { get; set; } = false;
+
+        public int userId { get; set; }
     }
 }
