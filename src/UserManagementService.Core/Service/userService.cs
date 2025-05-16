@@ -105,7 +105,7 @@ namespace UserManagementService.Core.UserService
             }
 
             var token = _auth.GenerateToken(existingUser);
-            return new UserLoginResponse { Success = true , jwtToken = token };
+            return new UserLoginResponse { Success = true , jwtToken = token ,userId = existingUser.Id };
 
         }
 

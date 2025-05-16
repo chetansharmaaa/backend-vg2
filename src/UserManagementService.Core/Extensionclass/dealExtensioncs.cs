@@ -21,7 +21,7 @@ namespace UserManagementService.Core.Extensionclass
                 StartDate = deal.StartDate,
                 EndDate = deal.EndDate,
                 IsFlashDeal = deal.IsFlashDeal,
-                Retailer = deal.Retailer
+                //Retailer = deal.Retailer
             };
         }
     }

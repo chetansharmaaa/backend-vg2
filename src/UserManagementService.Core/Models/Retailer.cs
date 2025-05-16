@@ -14,4 +14,6 @@ public partial class Retailer
     public string? BaseUrl { get; set; }
 
     public virtual ICollection<Deal> Deals { get; set; } = new List<Deal>();
+
+    public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 }

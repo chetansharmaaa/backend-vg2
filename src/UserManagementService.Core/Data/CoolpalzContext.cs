@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using UserManagementService.Core.AffiliateDTO;
 using UserManagementService.Core.Models;
 
 namespace UserManagementService.Core.Data;
@@ -48,12 +49,13 @@ public partial class CoolpalzContext : DbContext
 
     public virtual DbSet<UserRating> UserRatings { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=CHETAN_SHARMA\\SQLEXPRESS;Initial Catalog=coolpalz;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+    public DbSet<BestofAffilaiteResponse> BestRetailerDeals { get; set; }
 
+ 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BestofAffilaiteResponse>().HasNoKey().ToView(null); ;
+
         modelBuilder.Entity<AffiliateLink>(entity =>
         {
             entity.HasKey(e => e.LinkId).HasName("PK__Affiliat__2D122135648B5131");

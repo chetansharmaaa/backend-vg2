@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementService.Core.Data;
 using UserManagementService.Core.UserDTO;
@@ -18,6 +19,7 @@ namespace UserManagementService.app.Controllers
             _userRepository = userrepository;
         }
 
+
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO user)
@@ -32,17 +34,21 @@ namespace UserManagementService.app.Controllers
 
         [HttpGet]
         [Route("getuserTotalCashback/{userId}")]
+        [Authorize(Roles = "User,Admin")]
 
-        public async Task<IActionResult> GetTotalUserCashback([FromRoute]int userId)
+
+        public async Task<IActionResult> GetTotalUserCashback([FromRoute] int userId)
         {
             var response = await _userRepository.getTotalCashback(userId);
             return Ok(response);
         }
 
-        
+
 
         [HttpGet]
         [Route("getUserClickHistory/{userId}")]
+        [Authorize(Roles = "User,Admin")]
+
         public async Task<IActionResult> GetUserClickHistory([FromRoute] int userId)
         {
             var response = await _userRepository.getClickHistory(userId);
@@ -50,6 +56,8 @@ namespace UserManagementService.app.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
+
         [Route("getPurchaseHistory/{userId}")]
         public async Task<IActionResult> GetPurchaseHistory([FromRoute] int userId)
         {
@@ -70,6 +78,7 @@ namespace UserManagementService.app.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("ListOfUsers")]
          public async Task<IActionResult> GetAllUsers()
         {
@@ -78,6 +87,7 @@ namespace UserManagementService.app.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Admin")]
         [Route("getUser/{id}")]
         public async Task<IActionResult> GetUser([FromRoute] int id)
         {
@@ -89,6 +99,7 @@ namespace UserManagementService.app.Controllers
             return Ok(user);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("updateUser/{id}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] updateUserDTO user)
@@ -102,6 +113,7 @@ namespace UserManagementService.app.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError, response);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("deleteUser/{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
