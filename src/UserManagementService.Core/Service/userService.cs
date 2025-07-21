@@ -101,7 +101,7 @@ namespace UserManagementService.Core.UserService
             var existingUser = await _repository.GetUserByEmail(user.Email);
             if (existingUser == null || existingUser.PasswordHash != user.PasswordHash)
             {
-                return new UserLoginResponse {jwtToken = "Unathorize" };
+                return new UserLoginResponse {jwtToken = null };
             }
 
             var token = _auth.GenerateToken(existingUser);

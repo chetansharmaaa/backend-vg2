@@ -13,10 +13,12 @@ namespace UserManagementService.app.Controllers
     public class UserController : ControllerBase
     {
         private readonly IuserContract _userRepository;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(IuserContract userrepository)
+        public UserController(IuserContract userrepository , ILogger<UserController> logger)
         {
             _userRepository = userrepository;
+            _logger = logger;
         }
 
 
@@ -24,12 +26,13 @@ namespace UserManagementService.app.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO user)
         {
+            _logger.LogInformation($"Login attempt for user in UserController : {user.Email}");
             var response = await _userRepository.Login(user);
             if (response.Success)
             {
                 return Ok(response);
             }
-            return StatusCode(StatusCodes.Status500InternalServerError, response);
+            return StatusCode(StatusCodes.Status401Unauthorized, response);
         }
 
         [HttpGet]

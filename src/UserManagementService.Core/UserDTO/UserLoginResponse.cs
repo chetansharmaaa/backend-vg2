@@ -8,6 +8,7 @@ namespace UserManagementService.Core.UserDTO
 {
     public class UserLoginResponse
     {
+     
         public string jwtToken { get; set; }
         public bool Success { get; set; } = false;
 

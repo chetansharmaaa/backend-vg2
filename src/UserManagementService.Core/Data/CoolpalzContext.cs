@@ -11,7 +11,7 @@ public partial class CoolpalzContext : DbContext
     public CoolpalzContext()
     {
     }
-
+     
     public CoolpalzContext(DbContextOptions<CoolpalzContext> options)
         : base(options)
     {

@@ -93,7 +93,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 app.UseCors("AllowSpecificOrigin");
 
@@ -101,5 +100,7 @@ app.UseCors("AllowSpecificOrigin");
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/", () => Results.Ok("Healthy"));
+
 
 app.Run();
