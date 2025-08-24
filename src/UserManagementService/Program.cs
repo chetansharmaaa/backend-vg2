@@ -59,7 +59,7 @@ builder.Services.AddScoped<IAffiliateService, AffiliateService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:5175")
+        builder => builder.WithOrigins("https://api.vgetcash.com")
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });
